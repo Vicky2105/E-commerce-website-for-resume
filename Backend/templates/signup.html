@@ -1,0 +1,31 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>signup</title>
+    <link rel="stylesheet" href="../static/signup.css">
+</head>
+<body>
+    <div class="welcome">
+        <h1>welcome to my website</h1>
+    </div>
+    <div class="form">
+        <h1>Sign up</h1>
+    <form onsubmit="validate(event)">
+        <label for="email" class="mail">Email</label><br>
+        <input type="text" id="mailip" name="email"><br>
+
+        <label for="username" class="ul">Username</label><br>
+        <input type="text" name="username"><br>
+
+        <label for="password" class="pl">Password</label><br>
+        <input type="password" name="password" id="ps"> 
+        
+        <button class="view" onclick="helloworld()" type="button"><img src="../static/view.png" class="eye"></button><img><br><br>
+        <button type="submit" class="logbut" >signup</button>
+        </form>
+    </div>
+    <script src="../static/signup.js"></script>
+</body>
+</html>

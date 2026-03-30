@@ -1,0 +1,26 @@
+nav{
+    background-color: green;
+    overflow: hidden;
+}
+.topnav a{
+    float:left;
+    font-size: 20px;
+    padding: 14px 16px;
+    text-decoration: none;
+    text-align: center;
+    color: black;
+    font-family: 'Lucida Sans', 'Lucida Sans Regular';
+}
+.profile a{
+    float: right;
+    font-size: 20px;
+    padding: 14px 16px;
+    text-decoration: none;
+    text-align: center;
+    color: rgb(0, 0, 0);
+    font:arial;
+}
+nav a:hover{
+    background-color: black;
+    color: white; 
+}

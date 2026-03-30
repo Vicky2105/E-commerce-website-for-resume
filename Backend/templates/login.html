@@ -1,0 +1,23 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Login Page</title>
+    <link rel="stylesheet" href="../static/login.css">
+</head>
+<body>
+    <div class="form">
+    <form onsubmit="validate(event)">
+        <label for="username" class="ul">Username</label><br>
+        <input type="text" name="username"><br>
+        <label for="password" class="pl">Password</label><br>
+        <input type="password" name="password" id="ps"> 
+        <button class="view" onclick="helloworld()" type="button"><img src="view.png" class="eye"></button><img><br><br>
+        <button type="submit" class="logbut">Login</button>
+        <p>don't have an account <a href="signup.html" target="_blank"> signup</a></p>
+    </form>
+    </div>
+    <script src="../static/login.js"></script>
+</body>
+</html>

@@ -1,0 +1,85 @@
+.overlay h1{
+    margin-left:0px;
+    color: green;
+}
+.login p{ 
+    color: rgb(9, 33, 251);
+    font-size: 15px;
+    text-shadow: 10px;
+}
+.login{
+    background:white;
+    border-radius: 10px;
+    justify-content: center;
+    align-items: center;
+    padding:4rem 5rem;
+    font-family: "Lucida Console", "Courier New", monospace;
+}
+.logbut{
+    margin: 0px 0px 0px 0px;
+    border: none;
+    background-color:green;
+    font-family: "Lucida Console", "Courier New", monospace;
+    height:42px;
+    width: 220px;
+    font-size:20px;
+    border-radius: 5px;
+}
+.logbut:hover{
+    background-color:green;
+}
+.input{
+    margin-top: 0.5rem;
+    margin-bottom:1rem;
+    border: 3px solid black;
+    border-radius: 5px;
+    font-family: "Lucida Console", "Courier New", monospace;
+    font-size: 15px;
+    height: 34px;
+    width: 212px;
+}
+.incorrect{
+    margin-top: 0.5rem;
+    margin-bottom:1rem;
+    border: 3px solid red;
+    border-radius: 5px;
+    font-family: "Lucida Console", "Courier New", monospace;
+    font-size: 15px;
+    height: 34px;
+    width: 212px;
+}
+.eye{
+    width:50px;
+}
+.close{
+    position: absolute; 
+    float:right;
+    border:none;
+    background:none;
+    top:0;
+    margin-top:8.3rem;
+    margin-left: 19.5rem;
+    height:30px;
+    width:30px;
+    font-size: 30px;
+}
+.close:hover{
+    background-color: red;
+}
+.view{
+    border:none;
+    background:none;
+}
+.overlay
+{
+    display:flex;
+    position: fixed;
+    left: 0;
+    top: 0;
+    align-items: center;
+    justify-content: center;
+    width: 100%;
+    height: 100%;
+    z-index: 1000;
+    background: rgba(0,0,0,0.6);
+}

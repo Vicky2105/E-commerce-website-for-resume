@@ -1,0 +1,32 @@
+.items{
+    margin-left:5%;
+    margin-top:50px;
+    display: grid;
+    grid-template-columns: repeat(auto-fit,minmax(350px,1fr));
+    row-gap: 50px;
+    overflow:hidden;
+}
+img{
+    height: 150px;
+}
+.cart{
+    border-radius: 15px;
+    border-color: rgb(23, 232, 23);
+    background: white;
+    height: 36px;
+    width:100px;
+    margin-left: 50px;
+    font: bold;
+    font-size: 18px;
+    font-family: 'Times New Roman', Times, serif;
+}
+.cart:hover{
+    background-color:green;
+    color:white;
+    border:solid green;
+}
+.items p{
+    color: rgb(9, 33, 251);
+    font-size: 18px;
+    text-shadow: 10px;
+}
