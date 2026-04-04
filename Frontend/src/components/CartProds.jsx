@@ -4,10 +4,15 @@ import Display from './Display';
 import { useState,useEffect } from 'react';
 export default function CartProds(props){
     const [cartItems, setCartItems] = useState([]);
+    let cost=0;
     useEffect(() => {
         const cart = JSON.parse(localStorage.getItem("cart")) || [];
         setCartItems(cart);
     }, []);
+        const cart=JSON.parse(localStorage.getItem("cart"))||[];
+        if(cart.length!=0){
+            cart.forEach((value)=>cost+=parseInt(value.price)*parseInt(value.quantity));
+        }
         return (
             <div className='container'>
                 <div className="first">
@@ -27,11 +32,11 @@ export default function CartProds(props){
                     <h1>Amount</h1>
                         <div className="align">
                             <div>
-                                <p>Price</p>
+                                <p>Price</p>    
                                 <p>Total: </p>
                             </div>
                             <div>
-                                <p>Price</p>
+                                <p>{cost}</p>
                                 <p>Total: </p>
                             </div>
                         </div>

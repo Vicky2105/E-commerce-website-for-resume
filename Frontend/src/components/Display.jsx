@@ -7,7 +7,7 @@ export default function(props){
         if(item.id === id){
             return {...item, quantity: item.quantity + 1}
         }
-        return item;
+        return item; 
     });
         props.setCartItems(updatedCart);
         localStorage.setItem("cart", JSON.stringify(updatedCart));
@@ -26,12 +26,13 @@ export default function(props){
         const updatedCart=props.cartItems.filter(item=>item.id!=id);
         props.setCartItems(updatedCart);
         localStorage.setItem("cart",JSON.stringify(updatedCart));
+        // props.
     }
     return(
-        <div className="container"> 
+        <div className="insidecontainer"> 
             <div className="inside">
                 <h3>{props.details.name}</h3>
-                <p>{props.details.price}</p>
+                <p>₹{props.details.price}</p>
                 <div className="quant">
                     <button className="btn" onClick={()=>decrement(props.details.id)}>-</button>
                     <p>{props.details.quantity}</p>

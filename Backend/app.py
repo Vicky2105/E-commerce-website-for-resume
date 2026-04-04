@@ -59,6 +59,16 @@ def signup():
             "code":1
         })
         
+@app.route("/deleteAccount",methods=["POST"])
+def delacc():
+    data=request.get_json()
+    username=data.get("username")
+    dbuser=User.query.filter_by(username=username).first()
+    db.session.delete(dbuser)
+    db.commit()
+    return jsonify({
+        "message":"Account deleted successfully"
+    })
 @app.route("/login",methods=["POST"])
 def login():
     data=request.get_json()

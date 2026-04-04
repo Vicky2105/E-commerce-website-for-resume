@@ -18,7 +18,7 @@ function Body(props){
             <div className={props.item.product}>
                 <img src={props.item.image} alt={props.item.product} />
                 <h2>{props.item.name}</h2>
-                <p>{props.item.price}</p>
+                <p>₹{props.item.price}</p>
                 <button className="cart" onClick={()=>addToCart(props.item)} id={props.item.id}><FontAwesomeIcon icon={faCartPlus} /> Add</button>
             </div>
         </div>

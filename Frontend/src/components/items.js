@@ -10,21 +10,21 @@ const items=[
     {
         id:"1",
         product:"eggs",
-        price:"₹72 for 12",
+        price:"72",
         name:"Eggs",
         image:eggs
     },
     {
         id:"2",
         product:"redbull",
-        price:"₹120 of one",
+        price:"120",
         name:"Red Bull",
         image:redbull
     },
     {
         id:"3",
         product:"coffee",
-        price:"₹129",
+        price:"129",
         name:"Coffee Powder",
         image:coffee
     },
@@ -32,27 +32,27 @@ const items=[
         id:"4",
         product:"gemini",
         name:"Tea Powder",
-        price:"₹69",
+        price:"69",
         image:gemini
     },
     {
         id:"5",
         product:"milk",
-        price:"₹29",
+        price:"29",
         name:"Milk Packet",
         image:milk
     },
     {
         id:"6",
         product:"curd",
-        price:"₹49",
+        price:"49",
         name:"Curd",
         image:curd
     },
     {
         id:"7",
         product:"maggie",
-        price:"₹37",
+        price:"37",
         name:"Maggie",
         image:maggie
     },
@@ -60,7 +60,7 @@ const items=[
         id:"8",
         product:"santoor",
         name:"Santoor",
-        price:"₹49",
+        price:"49",
         image:santoor
     }
 ];

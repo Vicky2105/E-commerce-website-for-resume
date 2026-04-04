@@ -53,6 +53,7 @@ export default function Form(props){
         }
         else{
             try{
+                // console.log(props.credentials.);
                 const res=await fetch("http://localhost:5000/login",{
                 method:"POST",
                 headers:{
@@ -66,7 +67,7 @@ export default function Form(props){
                 else if(msg.message=="please enter username and password") setStyles(prev=>({...prev,username:"incorrect"})) 
                 if(msg.code==1){
                     props.setShowLogPage(false);
-                    props.setData(prev=>({...prev,profile:"Profile"}))
+                    props.setData(prev=>({...prev,profile:props.credentials.username}))
                 }
             }
                 catch(error){

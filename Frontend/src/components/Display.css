@@ -1,5 +1,6 @@
-.container{
-    display:flex;
+.insidecontainer{
+    display:block;
+    margin-left:6rem;
 }
 .inside h3{
     font-family: 'Franklin Gothic Medium', 'Arial Narrow', Arial, sans-serif;
@@ -15,8 +16,8 @@
     height: 2rem;
 }
 .btn,.btn2{
-    border:none;
-    border-radius:2px;
+    border:2px solid black;
+    border-radius:8px;
     height:30px;
     width:30px;
     font-family: 'Franklin Gothic Medium', 'Arial Narrow', Arial, sans-serif;
@@ -28,4 +29,16 @@
 .btn:hover{
     border:1px solid black;
     background: red;
+}
+.remove{
+    margin-top:10px;
+    margin-left:3px;
+    border:2px solid black;
+    border-radius:8px;
+    height:30px;
+    width:93px;
+    font-family: 'Franklin Gothic Medium', 'Arial Narrow', Arial, sans-serif;
+}
+.remove:hover{
+    background:red;     
 }
