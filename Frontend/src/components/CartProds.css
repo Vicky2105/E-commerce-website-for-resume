@@ -40,3 +40,8 @@
 .amount h1{
     margin:-2.75rem 1rem 1rem -2.5rem;
 }
+.amount p{
+    font-family: Verdana, Geneva, Tahoma, sans-serif;
+    font-size: medium;
+    font-weight: 550;
+}

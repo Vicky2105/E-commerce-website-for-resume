@@ -24,16 +24,17 @@ function App(){
         password:"",
         email:""
   });
+  const [userid,setUserid]=useState("");
   useEffect(()=>{
     localStorage.removeItem("cart")
   },[]);
   return(
     <Routes>
-      <Route path="/"  element={<Home price={price} setPrice={setPrice} count={count} setCount={setCount} data={data} setData={setData} setShowLogPage={setShowLogPage} showsignpage={showsignpage} 
+      <Route path="/"  element={<Home userid={userid} setUserid={setUserid} price={price} setPrice={setPrice} count={count} setCount={setCount} data={data} setData={setData} setShowLogPage={setShowLogPage} showsignpage={showsignpage} 
           showlogpage={showlogpage}  setShowSignPage={setShowSignPage} pass={pass} setPass={setPass} credentials={credentials} setCredentials={setCredentials}/>}/>
-      <Route path="/cart" element={<Cart price={price} setPrice={setPrice} count={count} setCount={setCount} data={data} setData={setData} setShowLogPage={setShowLogPage} showsignpage={showsignpage} 
+      <Route path="/cart" element={<Cart userid={userid} price={price} setPrice={setPrice} count={count} setCount={setCount} data={data} setData={setData} setShowLogPage={setShowLogPage} showsignpage={showsignpage} 
           showlogpage={showlogpage}  setShowSignPage={setShowSignPage} pass={pass} setPass={setPass} credentials={credentials} setCredentials={setCredentials}/>}/>
-
+      <Route path="/checkout" element={<checkout/>}/>
     </Routes>
   );
 }

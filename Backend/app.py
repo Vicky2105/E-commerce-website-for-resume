@@ -1,6 +1,8 @@
 from flask import Flask, jsonify, render_template, request
 from flask_bcrypt import Bcrypt
 from flask_sqlalchemy import SQLAlchemy
+from models import db
+from models import User,Cart,CartItem,Product
 from flask_jwt_extended import(
     JWTManager,
     create_access_token,
@@ -13,15 +15,10 @@ CORS(app,resources={r"/*": {"origins": "http://localhost:5173"}})
 app.config["SQLALCHEMY_DATABASE_URI"]="sqlite:///students.db"
 app.config["SQLALCHEMY_TRACK_MODIFICATIONS"]=False
 app.config["JWT_SECRET_KEY"]="Vicky@123"
+db.init_app(app)
 jwt=JWTManager(app)
-db=SQLAlchemy(app)
 bcrypt=Bcrypt(app)
-class User(db.Model):
-    id=db.Column(db.Integer,primary_key=True)
-    username=db.Column(db.String(100),unique=True,nullable=False)
-    password=db.Column(db.String(200),nullable=False)
-    email=db.Column(db.String(100),nullable=False)
-@app.route("/")
+@app.route("/",methods=["POST"])
 def home():
     return "backend is running"
 @app.route("/signup",methods=["POST"])
@@ -94,17 +91,101 @@ def login():
     return jsonify({
         "message":"login successfull",
         "code":1,
+        "userid":dbuser.id,
         "token":access_token
     })
 @app.route("/profile",methods=["GET"])
 @jwt_required()
 def profile():
     user=get_jwt_identity()
-    return ({
+    return jsonify({
         "message":"private route accessed",
         "user":user
         })
+@app.route("/add-to-cart", methods=["POST"])
+def add_to_cart():
+    data = request.json
+    user_id = data["user_id"]
+    product_id = data["product_id"]
+    fun=data["fun"]
+
+
+    cart = Cart.query.filter_by(user_id=user_id).first()
+
+    if not cart:
+        if fun=="dec":
+            return jsonify({"message":"no cart"})
+        cart = Cart(user_id=user_id)
+        db.session.add(cart)
+        db.session.commit()
+
+    item = CartItem.query.filter_by(cart_id=cart.id, product_id=product_id).first()
+
+    if item and fun=="inc":
+        item.quantity += 1
+    elif item and fun=="dec":
+        if item.quantity>1:
+            item.quantity-=1
+    else:
+        item = CartItem(cart_id=cart.id, product_id=product_id, quantity=1)
+        db.session.add(item)
+
+    db.session.commit()
+
+    return jsonify({"message": "Added"})
+@app.route("/cart/<int:user_id>", methods=["GET"])
+def get_cart(user_id):
+    cart = Cart.query.filter_by(user_id=user_id).first()
+
+    if not cart:
+        return jsonify([])
+
+    items = CartItem.query.filter_by(cart_id=cart.id).all()
+
+    result = []
+    for item in items:
+        product = Product.query.get(item.product_id)
+
+        result.append({
+            "product_id": product.id,
+            "name": product.name,
+            "price": product.price,
+            "quantity": item.quantity,
+            "image":f"http://localhost:5000/static/{product.image}"
+        })
+
+    return jsonify(result)
+@app.route("/remove-item", methods=["POST"])
+def remove_item():
+    data = request.json
+    user_id = data["user_id"]
+    product_id = data["product_id"]
+
+    cart = Cart.query.filter_by(user_id=user_id).first()
+
+    item = CartItem.query.filter_by(cart_id=cart.id, product_id=product_id).first()
+
+    if item:
+        db.session.delete(item)
+        db.session.commit()
+
+    return jsonify({"message": "Removed"})
+
 if __name__=="__main__":
     with app.app_context():
         db.create_all()
+
+        if Product.query.count() == 0:
+            products = [
+                Product(id=1, name="Eggs", price=72, image="eggs.jpg"),
+                Product(id=2, name="Red Bull", price=120, image="redbull.jpg"),
+                Product(id=3, name="Coffee Powder", price=129, image="coffee.jpg"),
+                Product(id=4, name="Tea Powder", price=69, image="gemini.png"),
+                Product(id=5, name="Milk Packet", price=29, image="milk.jpg"),
+                Product(id=6, name="Curd", price=49, image="curd.jpg"),
+                Product(id=7, name="Maggie", price=37, image="maggie.jpg"),
+                Product(id=8, name="Santoor", price=49, image="santoor.jpg")
+            ]
+            db.session.add_all(products)
+            db.session.commit()
     app.run(debug=True)
