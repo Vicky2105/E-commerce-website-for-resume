@@ -68,6 +68,7 @@ export default function Form(props){
                 if(msg.code==1){
                     props.setShowLogPage(false);
                     props.setUserid(msg.userid);
+                    props.setLogin(true);
                     props.setData(prev=>({...prev,profile:props.credentials.username}))
                 }
             }

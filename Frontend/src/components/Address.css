@@ -1,0 +1,26 @@
+.add label{
+    font-family: Verdana, Geneva, Tahoma, sans-serif;
+    font-size: medium;
+    margin-bottom: 5px;
+}
+.add input{
+    font-family: Verdana, Geneva, Tahoma, sans-serif;
+    font-size: medium;
+    width:50%;
+    height:2rem;
+    border-radius:5px;
+    margin-bottom:16px;
+}
+.add{
+    width:60%;
+}
+.addressForm{
+    margin-left:5rem;
+}
+.saveAddress{
+    font-family: Verdana, Geneva, Tahoma, sans-serif;
+    font-size: medium;
+    height:40px;
+    margin-left:12%;
+    border-radius:5px;
+}

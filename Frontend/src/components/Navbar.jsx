@@ -10,10 +10,14 @@ function Navbar(props){
                 <Link to="/"><FontAwesomeIcon icon={faHouse}/>Home</Link>
             </div>
             <div className="profile">
-                <Link to="/" id="userprof" onClick={()=>props.setShowLogPage(true)}><FontAwesomeIcon icon={faUser}/>{props.data.profile}</Link>
-                <Link to="/cart"><FontAwesomeIcon icon={faCartShopping}/>Cart {props.count}</Link>
+                <div className="prof">
+                    <Link to="/" id="userprof" onClick={()=>props.setShowLogPage(true)}><FontAwesomeIcon icon={faUser}/>{props.data.profile}</Link>
+                </div>
+                <div className="dropdown">
+                    <Link to="/Orders">Orders</Link>
+                </div>
+            <Link to="/cart"><FontAwesomeIcon icon={faCartShopping}/>Cart {props.count}</Link> 
             </div>
-            
         </nav>
     );
 }

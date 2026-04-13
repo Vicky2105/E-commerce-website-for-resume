@@ -1,10 +1,10 @@
 .amount{
-    border:1px solid black;
+    border:1px solid black; 
     padding:3rem;
     border-radius:5px;
     width:20%;
     float:right;
-    height:150px;
+    height:20%;
 }
 .align{
     display: flex;
@@ -19,7 +19,7 @@
     background-color: rgb(0, 156, 36);
     border-radius:10px;
     width:50%;
-    height:48px;
+    height:40px;
     margin-top: 1rem;
     margin-left: 5rem;
 }
@@ -41,6 +41,11 @@
     margin:-2.75rem 1rem 1rem -2.5rem;
 }
 .amount p{
+    font-family: Verdana, Geneva, Tahoma, sans-serif;
+    font-size: medium;
+    font-weight: 550;
+}
+.payment label{
     font-family: Verdana, Geneva, Tahoma, sans-serif;
     font-size: medium;
     font-weight: 550;

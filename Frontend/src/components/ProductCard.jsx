@@ -29,7 +29,7 @@ function Body(props){
 };
     return(
         <div className="items">
-            <div className={props.item.product}>
+            <div className="details">
                 <img src={props.item.image} alt={props.item.product} />
                 <h2>{props.item.name}</h2>
                 <p>₹{props.item.price}</p>

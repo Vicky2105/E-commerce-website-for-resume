@@ -24,3 +24,13 @@ nav a:hover{
     background-color: black;
     color: white; 
 }
+.dropdown{
+    display:none;
+    position:absolute;
+    float:right;
+    margin-left:93%;
+    margin-top:3rem;
+}
+.profile:hover .dropdown{
+    display:block;
+}

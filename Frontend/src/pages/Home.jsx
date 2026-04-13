@@ -16,7 +16,7 @@ function Home(props){
                     userid={props.userid} />
                 ))}
             </div>
-            {props.showlogpage && <Form setUserid={props.setUserid} data={props.data} setData={props.setData} setShowLogPage={props.setShowLogPage} showsignpage={props.showsignpage} 
+            {props.showlogpage && !props.login && <Form setUserid={props.setUserid} data={props.data} setData={props.setData} setShowLogPage={props.setShowLogPage} showsignpage={props.showsignpage} 
             setShowSignPage={props.setShowSignPage} pass={props.pass} setPass={props.setPass} credentials={props.credentials} setCredentials={props.setCredentials} /> }
         </>
     );
