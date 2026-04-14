@@ -70,6 +70,7 @@ export default function Form(props){
                     props.setUserid(msg.userid);
                     props.setLogin(true);
                     props.setData(prev=>({...prev,profile:props.credentials.username}))
+                    props.setCredentials(prev=>({username:"",password:"",email:""}));
                 }
             }
                 catch(error){
@@ -89,7 +90,7 @@ export default function Form(props){
                         <>
                         <label htmlFor="email" className="mail">Email</label><br/>
                         <input type="email" value={props.credentials.email} onChange={(e)=>props.setCredentials(prev=>({...prev,email:e.target.value}))} className={styles.email} /><br/>
-                        </>
+                        </> 
                     }
                     <label htmlFor="password" className="pl">Password</label><br/>
                     <input type={props.pass} value={props.credentials.password} onChange={(e)=>props.setCredentials(prev=>({...prev,password:e.target.value}))} className={styles.pass} /> 

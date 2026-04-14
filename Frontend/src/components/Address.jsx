@@ -39,7 +39,7 @@ export default function Address(props){
                     <input type="text" id="town" value={userAdd.town} onChange={(e)=>setUserAdd(prev=>({...prev,town:e.target.value}))}/><br/>
                     <label htmlFor="state">State</label><br/>
                     <input type="text" id="state" value={userAdd.state} onChange={(e)=>setUserAdd(prev=>({...prev,state:e.target.value}))}/><br/>
-                    <button type="button" onClick={()=>window.alert("clicked")} className="saveAddress">Save to this address</button>
+                    <button type="button" onClick={()=>window.alert("clicked")} className="saveAddress">Save this address</button>
                 </form>
             </div>
             

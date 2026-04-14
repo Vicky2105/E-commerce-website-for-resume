@@ -6,7 +6,7 @@ import { useState } from "react";
 function Home(props){
     return (
         <>
-            <Navbar count={props.count} setShowLogPage={props.setShowLogPage} showlogpage={props.showlogpage} data={props.data}/>
+            <Navbar login={props.login} count={props.count} setShowLogPage={props.setShowLogPage} showlogpage={props.showlogpage} data={props.data}/>
             <div className="items">
                 {items.map((item) => (
                 <Body 
@@ -16,7 +16,7 @@ function Home(props){
                     userid={props.userid} />
                 ))}
             </div>
-            {props.showlogpage && !props.login && <Form setUserid={props.setUserid} data={props.data} setData={props.setData} setShowLogPage={props.setShowLogPage} showsignpage={props.showsignpage} 
+            {props.showlogpage && !props.login && <Form setLogin={props.setLogin} setUserid={props.setUserid} data={props.data} setData={props.setData} setShowLogPage={props.setShowLogPage} showsignpage={props.showsignpage} 
             setShowSignPage={props.setShowSignPage} pass={props.pass} setPass={props.setPass} credentials={props.credentials} setCredentials={props.setCredentials} /> }
         </>
     );

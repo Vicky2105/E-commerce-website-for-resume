@@ -2,7 +2,7 @@ import Address from './Address';
 import './CartProds.css';
 import Display from './Display';
 import { useState,useEffect } from 'react';
-import { Link } from 'react-router';
+import { Link, useNavigate } from 'react-router';
 export default function CartProds(props){
     const [cartItems, setCartItems] = useState([]); 
     const [checkout,setCheckout]=useState(false);
@@ -14,6 +14,10 @@ export default function CartProds(props){
         let data = await res.json();
         setCartItems(data);
         };
+    const navigate=useNavigate();
+    function ordered(){
+        navigate("/Orders");
+    }
     useEffect(() => {
         props.userid!=""&&fetchCart();
         }, []);
@@ -66,7 +70,7 @@ export default function CartProds(props){
                     {
                         !checkout?(<button className="proceed" onClick={()=>{  
                         if(cartItems.length!=0) setCheckout(true)
-                        }}>Proceed to buy</button> ):(<button className="proceed" >Place your order</button> )
+                        }}>Proceed to buy</button> ):(<button className="proceed" onClick={ordered}>Place your order</button> )
                     }
                     
                 </div>

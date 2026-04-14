@@ -8,7 +8,6 @@ export default function orders(props){
     const fetchCart=async ()=>{
         const res=await fetch("http://localhost:5000/cart/"+props.userid);
         const data=await res.json();
-        console.log(data);
         setCart(data);
     }
     let cost= cart.reduce((total, item) => {
