@@ -18,6 +18,20 @@ class CartItem(db.Model):
     product_id = db.Column(db.Integer)
     quantity = db.Column(db.Integer)
     
+class Order(db.Model):
+    id = db.Column(db.Integer, primary_key=True)
+    user_id = db.Column(db.Integer, db.ForeignKey('user.id'))
+    total_price=db.Column(db.Integer)
+    ordered_date=db.Column(db.Date)
+    arrival_date=db.Column(db.Date) 
+    
+class OrderItem(db.Model):
+    id = db.Column(db.Integer, primary_key=True)
+    order_id = db.Column(db.Integer, db.ForeignKey('cart.id'))
+    product_id = db.Column(db.Integer)
+    quantity = db.Column(db.Integer)
+    
+
 class Product(db.Model):
     id = db.Column(db.Integer, primary_key=True)
     name = db.Column(db.String(100))

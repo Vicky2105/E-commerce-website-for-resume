@@ -15,7 +15,18 @@ export default function CartProds(props){
         setCartItems(data);
         };
     const navigate=useNavigate();
-    function ordered(){
+    async function ordered(){
+        console.log(props.userid);
+        await fetch("http://localhost:5000/post-to-orders",{
+            method:"POST",
+            headers:{
+                "Content-Type":"application/json"
+            },
+            body:JSON.stringify({
+                "user_id":props.userid,
+                "total_price":cost
+            })
+    });
         navigate("/Orders");
     }
     useEffect(() => {

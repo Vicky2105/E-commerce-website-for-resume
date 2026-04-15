@@ -13,6 +13,7 @@ export default function Form(props){
             profile:"Profile"
         }));
         props.setShowSignPage(prev=>!prev);  
+        props.setCredentials(prev=>({username:"",password:"",email:""}));
         //props.setCredentials({});
     }
     const [styles,setStyles]=useState({
@@ -46,6 +47,7 @@ export default function Form(props){
                 }
                 if(msg.message=="username already taken") setStyles(prev=>({...prev,username:"incorrect"}));
                 else if(msg.message=="email is already used") setStyles(prev=>({...prev,email:"incorrect"}));
+                props.setCredentials(prev=>({username:"",password:"",email:""}));
             }
             catch(error){
                     console.error("Error",error);
@@ -72,6 +74,7 @@ export default function Form(props){
                     props.setData(prev=>({...prev,profile:props.credentials.username}))
                     props.setCredentials(prev=>({username:"",password:"",email:""}));
                 }
+                props.setCredentials(prev=>({username:"",password:"",email:""}));
             }
                 catch(error){
                     console.error("Error",error);

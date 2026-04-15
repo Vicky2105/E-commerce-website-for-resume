@@ -1,8 +1,8 @@
+from datetime import timedelta,date
 from flask import Flask, jsonify, render_template, request
 from flask_bcrypt import Bcrypt
 from flask_sqlalchemy import SQLAlchemy
-from models import db
-from models import User,Cart,CartItem,Product
+from models import User,Cart,CartItem,Order,OrderItem,Product,db
 from flask_jwt_extended import(
     JWTManager,
     create_access_token,
@@ -117,7 +117,6 @@ def add_to_cart():
             return jsonify({"message":"no cart"})
         cart = Cart(user_id=user_id)
         db.session.add(cart)
-        db.session.commit()
 
     item = CartItem.query.filter_by(cart_id=cart.id, product_id=product_id).first()
 
@@ -144,6 +143,7 @@ def get_cart(user_id):
 
     result = []
     for item in items:
+        
         product = Product.query.get(item.product_id)
 
         result.append({
@@ -153,6 +153,7 @@ def get_cart(user_id):
             "quantity": item.quantity,
             "image":f"http://localhost:5000/static/{product.image}"
         })
+        
 
     return jsonify(result)
 @app.route("/remove-item", methods=["POST"])
@@ -170,6 +171,58 @@ def remove_item():
         db.session.commit()
 
     return jsonify({"message": "Removed"})
+@app.route("/post-to-orders",methods=["POST"])
+def post_order():
+    data=request.json
+    user_id=data["user_id"]
+    ordered_date=date.today()
+    arrival_date=ordered_date+timedelta(days=5)
+    total_price=data["total_price"]
+
+    cart=Cart.query.filter_by(user_id=user_id).first()
+    if not cart:
+        return jsonify("There are no items in the cart to order")
+    order=Order(user_id=user_id,ordered_date=ordered_date,arrival_date=arrival_date,total_price=total_price)
+    db.session.add(order)
+    db.session.flush()
+    items = CartItem.query.filter_by(cart_id=cart.id).all()
+    for item in items:
+        Ordered_item=OrderItem(order_id=order.id,product_id=item.product_id,quantity=item.quantity)
+        db.session.add(Ordered_item)
+    for item in items:
+        db.session.delete(item)
+    db.session.commit()
+    return jsonify("order palced successfully")
+    
+@app.route("/orders/<int:user_id>",methods=["GET"])
+def get_orders(user_id):
+
+    orders=Order.query.filter_by(user_id=user_id).all()
+    if not orders:
+        return jsonify([])
+    for order in orders:
+        items=OrderItem.query.filter_by(order_id=order.id).all()
+        res=[]
+        for item in items:
+            product=Product.query.get(item.product_id)
+            res.append({
+                "product_id": product.id,
+                "name": product.name,
+                "price": product.price,
+                "quantity": item.quantity,
+                "image":f"http://localhost:5000/static/{product.image}"
+            })
+
+    
+    delivery=[]
+    delivery.append({
+        "ordered_date":order.ordered_date,
+        "arrival_date":order.arrival_date,
+        "total_amount":order.total_price,
+        "items":res
+    })
+    return jsonify(delivery)
+
 
 if __name__=="__main__":
     with app.app_context():
